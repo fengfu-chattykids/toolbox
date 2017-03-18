@@ -2,10 +2,13 @@
 var CLI = require('clui');
 var Spinner = CLI.Spinner;
 var fs = require('fs');
-var path = require('path')
+var path = require('path');
+var childProcess = require('child_process');
 
 exports.dump = function (infile) {
-
+//mysqldump -u root -proot -h 33.33.33.1 --routines --no-create-info --no-data --no-create-db --skip-opt test > outputfile.sql
+console.log(infile)
+  childProcess.execSync("mysqldump -u root -proot -h 33.33.33.1 --routines --no-create-info --no-data --no-create-db --skip-opt test > outputfile.sql");
 }
 
 var getFileName = function (script) {
@@ -87,7 +90,7 @@ exports.separate = function (infile, outdir) {
 }
 
 exports.process = function (isDump, isSeparate, infile, outdir) {
-  if (isSeparate) {
+  if (isDump) {
     this.dump(infile)
   }
   if (isSeparate) {

@@ -56,9 +56,9 @@ exports.separate = function (infile, outdir) {
       return console.error(err);
     }
     removeAllSql(outdir);
-    const regex = /(DELIMITER ;;)((.|\n)*?)(DELIMITER ;)/g;
+    const regex = /(DELIMITER ;;)((.|\r|\n)*?)(DELIMITER ;)/g;
 
-    data = data.replace(/\r\n/g, "\n");
+    // data = data.replace(/\r\n/g, "\n");
 
     let m;
 
